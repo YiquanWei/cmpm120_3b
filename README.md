@@ -1,41 +1,32 @@
 # Moonlight Factory
 
-CMPM 120 Platformer implementation.
+Platformer game made for CMPM 120 using Phaser and Tiled.
 
-## Important
+## Controls
 
-This repo expects Phaser at:
+- A / Left Arrow → Move left
+- D / Right Arrow → Move right
+- Space → Jump
+- Double jump supported
 
-```txt
-lib/phaser.js
-```
+## Features
 
-I did not include Phaser in this zip. Put your own `phaser.js` there.
+- Side-scrolling camera
+- Collectible coins
+- Particle effects
+- Jump / collect sound effects
+- Hazards and respawn
+- End-level goal
+- Animated collectibles
+- Double jump movement
 
-## Scenes
+## Tools Used
 
-```txt
-src/scenes/Load.js
-src/scenes/Platformer.js
-```
+- Phaser 3
+- Tiled
+- JavaScript
 
-## Current map setup
+## Assets
 
-The uploaded `first_orbit.tmj` only had a `Platforms` tile layer.
-This starter version converts it into:
-
-```txt
-assets/tilemaps/first_orbit.json
-```
-
-and adds object layers:
-
-```txt
-Spawn
-Collision
-Collectibles
-Hazards
-Exit
-```
-
-The `Platforms` layer is visual only. The real collision comes from the `Collision` object layer.
+Most visual assets are from provided classroom resources and modified for the assignment.
+Audio and level design were customized for the project.
