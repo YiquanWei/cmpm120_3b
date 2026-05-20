@@ -14,6 +14,8 @@ class Platformer extends Phaser.Scene {
 
         this.JUMP_VELOCITY = -360;
         this.JUMP_HOLD_DURATION = 10;
+        this.MAX_JUMPS = 2;
+        this.jumpCount = 0;
 
         this.PARTICLE_VELOCITY = 50;
 
@@ -489,13 +491,14 @@ class Platformer extends Phaser.Scene {
 
         if (my.sprite.player.body.blocked.down) {
             this.coyoteTime = 10;
+            this.jumpCount = 0;
         } else if (this.coyoteTime > 0) {
             this.coyoteTime--;
         }
 
         if (
             Phaser.Input.Keyboard.JustDown(this.cursors.space) &&
-            this.coyoteTime > 0
+            (this.coyoteTime > 0 || this.jumpCount < this.MAX_JUMPS)
         ) {
 
             my.sprite.player.setVelocityY(
@@ -503,6 +506,7 @@ class Platformer extends Phaser.Scene {
             );
 
             this.jumpHold = this.JUMP_HOLD_DURATION;
+            this.jumpCount++;
 
             my.sprite.player.anims.play(
                 "jump",
