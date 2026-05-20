@@ -18,15 +18,10 @@ Platformer game made for CMPM 120 using Phaser and Tiled.
 - Hazards and respawn
 - End-level goal
 - Animated collectibles
-- Double jump movement
-
-## Tools Used
-
-- Phaser 3
-- Tiled
-- JavaScript
+- Double jump
+- Wall jump
 
 ## Assets
+visual: https://kenney.nl/assets/1-bit-platformer-pack
+sound effects are from previous class assignments, bgm is made by me.
 
-Most visual assets are from provided classroom resources and modified for the assignment.
-Audio and level design were customized for the project.
