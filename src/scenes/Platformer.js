@@ -13,9 +13,11 @@ class Platformer extends Phaser.Scene {
         this.AIR_DRAG = 40;
 
         this.JUMP_VELOCITY = -360;
+        this.WALL_JUMP_X = 180;
         this.JUMP_HOLD_DURATION = 10;
         this.MAX_JUMPS = 2;
         this.jumpCount = 0;
+        this.wallJumped = false;
 
         this.PARTICLE_VELOCITY = 50;
 
@@ -489,24 +491,33 @@ class Platformer extends Phaser.Scene {
         // JUMP
         // =========================================
 
-        if (my.sprite.player.body.blocked.down) {
+        const onWall = !onGround && (my.sprite.player.body.blocked.left || my.sprite.player.body.blocked.right);
+
+        if (onGround) {
             this.coyoteTime = 10;
             this.jumpCount = 0;
+            this.wallJumped = false;
         } else if (this.coyoteTime > 0) {
             this.coyoteTime--;
         }
 
         if (
             Phaser.Input.Keyboard.JustDown(this.cursors.space) &&
-            (this.coyoteTime > 0 || this.jumpCount < this.MAX_JUMPS)
+            (this.coyoteTime > 0 || this.jumpCount < this.MAX_JUMPS || (onWall && !this.wallJumped))
         ) {
 
-            my.sprite.player.setVelocityY(
-                this.JUMP_VELOCITY
-            );
+            if (onWall && !this.wallJumped) {
+                my.sprite.player.setVelocityY(this.JUMP_VELOCITY);
+                my.sprite.player.setVelocityX(
+                    my.sprite.player.body.blocked.left ? this.WALL_JUMP_X : -this.WALL_JUMP_X
+                );
+                this.wallJumped = true;
+            } else {
+                my.sprite.player.setVelocityY(this.JUMP_VELOCITY);
+                this.jumpCount++;
+            }
 
             this.jumpHold = this.JUMP_HOLD_DURATION;
-            this.jumpCount++;
 
             my.sprite.player.anims.play(
                 "jump",
