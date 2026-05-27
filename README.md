@@ -1,6 +1,6 @@
 # Moonlight Factory
 
-Platformer game made for CMPM 120 using Phaser and Tiled.
+Platformer game made for CMPM 120 using Phaser and Tiled. Collect all the coins to win the game.
 
 ## Controls
 
