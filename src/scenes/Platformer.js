@@ -368,9 +368,10 @@ class Platformer extends Phaser.Scene {
 
         this.cameras.main.shake(200, 0.01);
 
+        const { width, height } = this.scale;
         const message = this.add.text(
-            this.cameras.main.midPoint.x,
-            this.cameras.main.midPoint.y,
+            width / 2,
+            height / 2,
             "LEVEL COMPLETE\nPress R to restart",
             {
                 fontSize: "32px",
